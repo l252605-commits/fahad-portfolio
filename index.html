@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fahad Saleem — Portfolio</title>
+  <meta name="description" content="Fahad Saleem — Software Developer portfolio. Skills, projects, certifications and contact.">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Avatar Lightbox -->
+<div id="avatarLightbox">
+  <button class="lb-close" onclick="closeAvatarLightbox()">×</button>
+  <img id="avatarLightboxImg" src="" alt="Profile photo">
+</div>
+<!-- Certificate Lightbox -->
+<div id="certLightbox">
+  <button class="lb-close" onclick="closeCertLightbox()">×</button>
+  <img id="certLightboxImg" src="" alt="Certificate">
+</div>
+
+
+<nav>
+  <div class="wrap">
+    <div class="nav-brand">Fahad <span>Saleem</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#learning">Learning</a>
+      <a href="#education">Education</a>
+      <a href="#achievements">Certifications</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button id="editToggle" onclick="toggleEdit()" class="" style="display:none">✏️ Edit mode</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="avatar-wrap">
+      <div class="avatar has-img" id="avatar">
+        <img id="avatarImg" src="" alt="Avatar">
+        <span>FS</span>
+      </div>
+      <div class="avatar-edit" onclick="document.getElementById(&#39;avatarInput&#39;).click()" title="Change profile picture">✎</div>
+    <button class="avatar-view-btn" id="avatarViewBtn" onclick="openAvatarLightbox()" title="View photo" style="display:none">👁</button>
+      <button class="avatar-view-btn" onclick="openAvatarLightbox()" title="View profile photo">👁</button>
+      <input type="file" id="avatarInput" accept="image/*" style="display:none;" onchange="handleAvatarUpload(event)">
+    </div>
+    <h1 contenteditable="false" id="heroName">Fahad Saleem</h1>
+    <p class="tagline" contenteditable="false" id="heroTag">Data science student · C++ developer · AI enthusiast · Problem solver</p>
+    <div class="cta-row">
+      <button class="btn primary" id="resumeBtnHero" onclick="openDoc(&#39;resume&#39;)" disabled="">Download resume</button>
+      <button class="btn" onclick="document.getElementById(&#39;projects&#39;).scrollIntoView({behavior:&#39;smooth&#39;})">View projects</button>
+      <button class="btn" onclick="document.getElementById(&#39;contact&#39;).scrollIntoView({behavior:&#39;smooth&#39;})">Contact</button>
+    </div>
+  </div>
+</header>
+
+<section id="about" class="wrap">
+  <p class="eyebrow">Profile</p>
+  <h2>About me</h2>
+  <p contenteditable="false" id="aboutP1">A passionate Data science student with hands-on experience building software applications, games, and management systems using C++. Strong foundation in object-oriented programming, with a track record of shipping working projects.</p>
+  <p contenteditable="false" id="aboutP2">Beyond core development, I have a growing interest in generative AI, Machine Learning, Data Science and I actively pursue learning in these areas alongside my degree.</p>
+  <p contenteditable="false" id="aboutP3">I also volunteer with community initiatives supporting Christian minority rights in Pakistan, reflecting a commitment to leadership and social responsibility outside the classroom.</p>
+</section>
+
+<section id="skills" class="wrap">
+  <p class="eyebrow">Toolkit</p>
+  <h2>Skills</h2>
+  <div class="skills" id="skillsList">
+    <span class="skill-pill">C++ <button class="rm" onclick="removeItem(this)">remove</button></span>
+    <span class="skill-pill">OOP <button class="rm" onclick="removeItem(this)">remove</button></span>
+    <span class="skill-pill">SFML <button class="rm" onclick="removeItem(this)">remove</button></span>
+    <span class="skill-pill">Raylib <button class="rm" onclick="removeItem(this)">remove</button></span>
+    <span class="skill-pill">Generative AI <button class="rm" onclick="removeItem(this)">remove</button></span>
+    <span class="skill-pill">Presentation skills <button class="rm" onclick="removeItem(this)">remove</button></span>
+    <span class="skill-pill">Microsoft word <button class="rm" onclick="removeItem(this)">remove</button></span>
+    <span class="skill-pill">Microsoft Excel <button class="rm" onclick="removeItem(this)">remove</button></span>
+    <span class="skill-pill">Python <button class="rm" onclick="removeItem(this)">remove</button></span>
+    <span class="skill-pill">Game Development <button class="rm" onclick="removeItem(this)">remove</button></span>
+  <span class="skill-pill">Youtube Automation <button class="rm" onclick="removeItem(this)">remove</button></span><span class="skill-pill">Project Management <button class="rm" onclick="removeItem(this)">remove</button></span></div>
+  <div class="add-row edit-only">
+    <input type="text" id="newSkillInput" placeholder="New skill name">
+    <button class="btn small" onclick="addSkill()">Add skill</button>
+  </div>
+</section>
+
+<section id="projects" class="wrap">
+  <p class="eyebrow">Selected work</p>
+  <h2>Featured projects</h2>
+  <div class="projects-grid" id="projectsGrid">
+    <div class="project-card">
+      <button class="rm-project" onclick="removeItem(this)">remove</button>
+      <div class="project-thumb" onclick="document.getElementById(&#39;thumbInput1&#39;).click()"><img src="" alt="Project thumbnail"><span>Thumbnail</span></div>
+      <input type="file" id="thumbInput1" accept="image/*" style="display:none" onchange="handleThumbUpload(event, this)">
+      <h3 contenteditable="false">Chess Game</h3>
+      <p class="desc" contenteditable="false">A fully playable chess game with move validation, turn logic, and a graphical interface.</p>
+      <p class="tech" contenteditable="false">C++ · SFML</p>
+      <div class="project-links">
+        <a href="https://www.linkedin.com/posts/fahad-saleem-99860b376_programming-c-gamedevelopment-ugcPost-7432753018808225792-oeM2/?utm_source=share&amp;utm_medium=member_desktop&amp;rcm=ACoAAFz-t8QBS1r6DCyum0-sjU9Wsog-XZLyi0E" target="_blank">Demo video</a>
+        <a href="https://github.com/l252605-commits/Chess-Game.git" target="_blank">GitHub</a>
+      </div>
+      <button class="btn small edit-links-btn" onclick="editProjectLinks(this)" style="margin-top:10px;">Edit links</button>
+    </div>
+
+    <div class="project-card">
+      <button class="rm-project" onclick="removeItem(this)">remove</button>
+      <div class="project-thumb" onclick="document.getElementById(&#39;thumbInput2&#39;).click()"><img src="" alt="Project thumbnail"><span>Thumbnail</span></div>
+      <input type="file" id="thumbInput2" accept="image/*" style="display:none" onchange="handleThumbUpload(event, this)">
+      <h3 contenteditable="false">Parking Management System</h3>
+      <p class="desc" contenteditable="false">A console-based system to manage vehicle entries, exits, slot allocation, and billing.</p>
+      <p class="tech" contenteditable="false">C++ · OOP</p>
+      <div class="project-links">
+        <a href="https://www.linkedin.com/posts/fahad-saleem-99860b376_cpp-oop-programming-ugcPost-7439729673351122945-iI7e/?utm_source=share&amp;utm_medium=member_desktop&amp;rcm=ACoAAFz-t8QBS1r6DCyum0-sjU9Wsog-XZLyi0E" target="_blank">Demo video</a>
+        <a href="https://github.com/l252605-commits/Smart-Parking-system" target="_blank">GitHub</a>
+      </div>
+      <button class="btn small edit-links-btn" onclick="editProjectLinks(this)" style="margin-top:10px;">Edit links</button>
+    </div>
+
+    <div class="project-card">
+      <button class="rm-project" onclick="removeItem(this)">remove</button>
+      <div class="project-thumb" onclick="document.getElementById(&#39;thumbInput3&#39;).click()"><img src="" alt="Project thumbnail"><span>Thumbnail</span></div>
+      <input type="file" id="thumbInput3" accept="image/*" style="display:none" onchange="handleThumbUpload(event, this)">
+      <h3 contenteditable="false">Tower Defence</h3>
+      <p class="desc" contenteditable="false">A strategy game where players place towers to defend against waves of enemies.</p>
+      <p class="tech" contenteditable="false">C++ · Raylib</p>
+      <div class="project-links">
+        <a href="https://www.linkedin.com/posts/fahad-saleem-99860b376_cplusplus-raylib-gamedevelopment-ugcPost-7470495870937993216-78XR/?utm_source=share&amp;utm_medium=member_desktop&amp;rcm=ACoAAFz-t8QBS1r6DCyum0-sjU9Wsog-XZLyi0E" target="_blank">Demo video</a>
+        <a href="https://github.com/l252605-commits/Tower-Defence-Game" target="_blank">GitHub</a>
+      </div>
+      <button class="btn small edit-links-btn" onclick="editProjectLinks(this)" style="margin-top:10px;">Edit links</button>
+    </div>
+
+    <div class="project-card">
+      <button class="rm-project" onclick="removeItem(this)">remove</button>
+      <div class="project-thumb" onclick="document.getElementById(&#39;thumbInput4&#39;).click()"><img src="" alt="Project thumbnail"><span>Thumbnail</span></div>
+      <input type="file" id="thumbInput4" accept="image/*" style="display:none" onchange="handleThumbUpload(event, this)">
+      <h3 contenteditable="false">Result Card Generator</h3>
+      <p class="desc" contenteditable="false">A tool that generates formatted academic result cards from student data.</p>
+      <p class="tech" contenteditable="false">C++ · Raylib</p>
+      <div class="project-links">
+        <a href="https://www.linkedin.com/posts/fahad-saleem-99860b376_cpp-raylib-oop-ugcPost-7471222497783205889-ltfE/?utm_source=share&amp;utm_medium=member_desktop&amp;rcm=ACoAAFz-t8QBS1r6DCyum0-sjU9Wsog-XZLyi0E" target="_blank">Demo video</a>
+        <a href="https://github.com/l252605-commits/Result-card-generator" target="_blank">GitHub</a>
+      </div>
+      <button class="btn small edit-links-btn" onclick="editProjectLinks(this)" style="margin-top:10px;">Edit links</button>
+    </div>
+
+    <div class="add-project-card" onclick="addProject()">+ Add new project</div>
+  </div>
+</section>
+
+<section id="experience" class="wrap">
+  <p class="eyebrow">Beyond the code</p>
+  <h2>Experience &amp; leadership</h2>
+  <div id="expList">
+    <div class="exp-item">
+      <h3 contenteditable="false">Community Volunteer, Minority Rights Advocacy</h3>
+      <p contenteditable="false">Active volunteer supporting Christian minority rights initiatives in Pakistan, contributing to community outreach, awareness campaigns, and support programs.</p>
+      <button class="rm-exp" onclick="removeItem(this)">remove</button>
+    </div>
+  </div>
+  <div class="add-exp-card" onclick="addExperience()">+ Add experience</div>
+</section>
+
+<section id="learning" class="wrap">
+  <p class="eyebrow">Currently learning</p>
+  <h2>Learning journey</h2>
+  <div class="learning-grid" id="learningGrid">
+    <div class="learning-item">Generative AI<button class="rm-learn" onclick="removeItem(this)">remove</button></div>
+    <div class="learning-item">Data Analytics<button class="rm-learn" onclick="removeItem(this)">remove</button></div>
+    <div class="learning-item">Business Intelligence<button class="rm-learn" onclick="removeItem(this)">remove</button></div>
+    <div class="learning-item">Advanced Software Development<button class="rm-learn" onclick="removeItem(this)">remove</button></div>
+    <div class="learning-item">fgt5r<button class="rm-learn" onclick="removeItem(this)">remove</button></div><button class="add-learning-btn" onclick="addLearning()">+ Add topic</button>
+  </div>
+</section>
+
+<section id="education" class="wrap">
+  <p class="eyebrow">Academic Path</p>
+  <h2>Education Journey</h2>
+  <div class="education-grid" id="educationGrid">
+    <div class="education-item">
+      <button class="rm-edu" onclick="removeItem(this)">remove</button>
+      <div class="education-header">
+        <h3 contenteditable="true">Bachelor of Science in Data Science</h3>
+        <p class="institution" contenteditable="true">National University of Computer and Emerging Sciences</p>
+        <p class="duration" contenteditable="true">2025 - 2029</p>
+      </div>
+      <p class="details" contenteditable="true">Focused on data science, artificial intelligence, and Machine Learning.</p>
+      <div class="education-result-wrap">
+        <div class="result-info">
+          <span class="result-label">Result/Transcript</span>
+          <label class="result-upload-lbl">Upload result<input type="file" accept="image/*" style="display:none;" onchange="handleEducationResult(event,this)"></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="education-item"><button class="rm-edu" onclick="removeItem(this)">remove</button><div class="education-header"><h3 contenteditable="true">Intermediate Computer Science</h3><p class="institution" contenteditable="true">Punjab Group of Colleges Pirmahal</p><p class="duration" contenteditable="true">2023-2025</p></div><p class="details" contenteditable="true"><p>Earned an A+ Grade Through Dedication and Excellence. Focused on math and coding.</p></p><div class="education-result-wrap"><img class="result-thumb" src="" alt="Result"><div class="result-info"><span class="result-label">Result/Transcript</span><label class="result-upload-lbl">Upload result<input type="file" accept="image/*" style="display:none;" onchange="handleEducationResult(event,this)"></label></div></div></div><div class="education-item"><button class="rm-edu" onclick="removeItem(this)">remove</button><div class="education-header"><h3 contenteditable="true">Matriculation</h3><p class="institution" contenteditable="true">Govt High School 689/31 GB, BA</p><p class="duration" contenteditable="true">2021-2023</p></div><p class="details" contenteditable="true"><p>Achieved A+ in Matric Through Hard Work and Consistency</p></p><div class="education-result-wrap"><img class="result-thumb" src="" alt="Result"><div class="result-info"><span class="result-label">Result/Transcript</span><label class="result-upload-lbl">Upload result<input type="file" accept="image/*" style="display:none;" onchange="handleEducationResult(event,this)"></label></div></div></div><div class="add-education-card" onclick="addEducation()">+ Add Education</div>
+  </div>
+</section>
+
+<section id="achievements" class="wrap">
+  <p class="eyebrow">Recognition</p>
+  <h2>Achievements &amp; certifications</h2>
+  <div class="achievements-list" id="achievementsList">
+    <div class="empty-state" id="achievementsEmpty" style="display: block;">No certifications added yet. Switch to edit mode to add your first one.</div>
+  </div>
+  <div class="add-row edit-only">
+    <input type="text" id="newAchievementInput" placeholder="e.g. Google Data Analytics Certificate, 2026">
+    <button class="btn small" onclick="addAchievement()">Add</button>
+  </div>
+</section>
+
+<section id="documents" class="wrap">
+  <p class="eyebrow">Documents</p>
+  <h2>Resume &amp; CV</h2>
+
+  <div class="doc-card">
+    <div class="doc-info">
+      <div class="doc-icon">📄</div>
+      <div class="doc-meta">
+        <div class="doc-name">Resume</div>
+        <div class="doc-meta-info" id="resumeMeta">Fahad_Saleem_Resume (1).docx - 13 KB</div>
+      </div>
+    </div>
+    <div class="doc-actions">
+      <button class="doc-action-btn" onclick="openDoc(&#39;resume&#39;)" id="resumeOpenBtn">View</button>
+      <input type="file" id="resumeInput" accept="application/pdf,.doc,.docx" style="display:none;" onchange="handleDocUpload(event,&#39;resume&#39;)">
+      <button class="doc-action-btn edit-only" onclick="document.getElementById(&#39;resumeInput&#39;).click()">Upload</button>
+      <button class="doc-action-btn edit-only" onclick="removeDoc(&#39;resume&#39;)" id="resumeRmBtn" style="background: rgba(255, 107, 107, 0.1); border-color: rgb(255, 107, 107); color: rgb(255, 107, 107);">Remove</button>
+    </div>
+  </div>
+
+  <div class="doc-card">
+    <div class="doc-info">
+      <div class="doc-icon">📋</div>
+      <div class="doc-meta">
+        <div class="doc-name">CV</div>
+        <div class="doc-meta-info" id="cvMeta">Fahad_Saleem_CV (1) (1).docx - 14 KB</div>
+      </div>
+    </div>
+    <div class="doc-actions">
+      <button class="doc-action-btn" onclick="openDoc(&#39;cv&#39;)" id="cvOpenBtn">View</button>
+      <input type="file" id="cvInput" accept="application/pdf,.doc,.docx" style="display:none;" onchange="handleDocUpload(event,&#39;cv&#39;)">
+      <button class="doc-action-btn edit-only" onclick="document.getElementById(&#39;cvInput&#39;).click()">Upload</button>
+      <button class="doc-action-btn edit-only" onclick="removeDoc(&#39;cv&#39;)" id="cvRmBtn" style="background: rgba(255, 107, 107, 0.1); border-color: rgb(255, 107, 107); color: rgb(255, 107, 107);">Remove</button>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="wrap">
+  <p class="eyebrow">Get in touch</p>
+  <h2>Contact</h2>
+  <div class="contact-info-grid" id="contactInfoGrid">
+    <div class="contact-item" data-contact-type="email" onclick="handleContactItemClick(this)">
+      <span class="contact-label">Email</span>
+      <div class="contact-value" contenteditable="true">nexora.dev7@gmail.com</div>
+      <button class="rm-contact" onclick="removeItem(this)">×</button>
+    </div>
+    <div class="contact-item" data-contact-type="linkedin" onclick="handleContactItemClick(this)">
+      <span class="contact-label">LinkedIn</span>
+      <div class="contact-value" contenteditable="true">https://www.linkedin.com/in/fahad-saleem-99860b376/</div>
+      <button class="rm-contact" onclick="removeItem(this)">×</button>
+    </div>
+    <div class="contact-item" data-contact-type="github" onclick="handleContactItemClick(this)">
+      <span class="contact-label">GitHub</span>
+      <div class="contact-value" contenteditable="true">https://github.com/l252605-commits</div>
+      <button class="rm-contact" onclick="removeItem(this)">×</button>
+    </div>
+  </div>
+  <button class="add-contact-btn" onclick="addContact()">+ Add Contact Info</button>
+  
+  <div class="contact-form-wrapper">
+    <p class="eyebrow" style="margin-top: 40px;">Send a message</p>
+    <form class="contact-form" onsubmit="handleContactForm(event)">
+      <input type="text" placeholder="Your name" id="contactName" required="">
+      <input type="email" placeholder="Your email" id="contactEmail" required="">
+      <textarea placeholder="Your message" id="contactMessage" required=""></textarea>
+      <button class="btn primary" type="submit">Send message</button>
+    </form>
+  </div>
+</section>
+
+<!-- Avatar Lightbox -->
+<div id="avatarLightbox" class="lightbox">
+  <button class="close-btn" onclick="closeAvatarLightbox()" aria-label="Close">×</button>
+  <img id="avatarLightboxImg" src="" alt="Profile photo">
+</div>
+
+<!-- Certificate Lightbox -->
+<div id="certLightbox" class="lightbox">
+  <button class="close-btn" onclick="closeCertLightbox()" aria-label="Close">×</button>
+  <img id="certLightboxImg" src="" alt="Certificate">
+</div>
+
+<footer>© 2026 Fahad Saleem — crafted in HTML, CSS &amp; JS</footer>
+
+<div class="save-bar">
+  <span>Edit mode on. Click text to edit, upload your photo and resume, use the controls to add or remove items. Changes save automatically in this browser.</span>
+  <button onclick="resetSite()">Reset all</button>
+</div>
+
+<script>
+const EDITABLE_IDS = ['heroName','heroTag','aboutP1','aboutP2','aboutP3'];
+
+function toggleEdit(){
+  const body = document.body;
+  const isCurrentlyEditMode = body.classList.contains('edit-mode');
+  
+  // If trying to ENTER edit mode, ask for password
+  if(!isCurrentlyEditMode){
+    const password = prompt('🔐 Enter admin password to edit your portfolio:');
+    if(password === null) return; // User cancelled
+    
+    // Check password (Change this to your desired password)
+    const ADMIN_PASSWORD = 'fahad123'; // ← CHANGE THIS TO YOUR PASSWORD
+    
+    if(password !== ADMIN_PASSWORD){
+      alert('❌ Incorrect password! Only the website owner can edit.');
+      return;
+    }
+  }
+  
+  // Password correct or exiting edit mode
+  const on = body.classList.toggle('edit-mode');
+  document.getElementById('editToggle').classList.toggle('active', on);
+  document.getElementById('editToggle').textContent = on ? '✓ Done editing' : '✏️ Edit mode';
+
+  EDITABLE_IDS.forEach(id=>{
+    document.getElementById(id).setAttribute('contenteditable', on);
+  });
+  document.querySelectorAll('.project-card h3, .project-card .desc, .project-card .tech, .exp-item h3, .exp-item p').forEach(el=>{
+    el.setAttribute('contenteditable', on);
+  });
+
+  if(!on){ 
+    alert('✅ Changes saved successfully!');
+    saveAll(); 
+  }
+}
+
+function removeItem(btn){
+  // Find the closest removable element
+  let el = btn.closest('.skill-pill') || 
+           btn.closest('.project-card') || 
+           btn.closest('.achievement') || 
+           btn.closest('.exp-item') || 
+           btn.closest('.learning-item') || 
+           btn.closest('.education-item') || 
+           btn.closest('.contact-item');
+  
+  if(!el) {
+    console.error('Could not find element to remove');
+    return;
+  }
+  
+  if(confirm('Remove this item?')){
+    el.remove();
+    checkAchievementsEmpty();
+    checkEducationEmpty();
+    saveAll();
+  }
+}
+
+function editProjectLinks(btn){
+  const card = btn.closest('.project-card');
+  const links = card.querySelectorAll('.project-links a');
+  const demoLink = links[0];
+  const githubLink = links[1];
+
+  const repoUrl = prompt('Enter your GitHub repository link for this project:', (githubLink && githubLink.getAttribute('href') !== '#') ? githubLink.getAttribute('href') : 'https://github.com/');
+  if(repoUrl !== null && repoUrl.trim() !== ''){
+    githubLink.setAttribute('href', repoUrl.trim());
+  }
+
+  const videoUrl = prompt('Enter your LinkedIn demo video link for this project:', (demoLink && demoLink.getAttribute('href') !== '#') ? demoLink.getAttribute('href') : 'https://www.linkedin.com/');
+  if(videoUrl !== null && videoUrl.trim() !== ''){
+    demoLink.setAttribute('href', videoUrl.trim());
+  }
+
+  saveAll();
+}
+
+function handleThumbUpload(event, btn){
+  const file = event.target.files[0];
+  if(!file) return;
+  if(file.size > 3 * 1024 * 1024){
+    alert('Please choose an image smaller than 3MB.');
+    return;
+  }
+  const card = btn.closest('.project-card');
+  const thumb = card.querySelector('.project-thumb');
+  const reader = new FileReader();
+  reader.onload = function(e){
+    thumb.innerHTML = '<img src="' + e.target.result + '" alt="Project thumbnail"><span>Thumbnail</span>';
+    saveAll();
+  };
+  reader.readAsDataURL(file);
+}
+
+function addSkill(){
+  const input = document.getElementById('newSkillInput');
+  const val = input.value.trim();
+  if(!val) return;
+  const span = document.createElement('span');
+  span.className = 'skill-pill';
+  span.innerHTML = escapeHtml(val) + ' <button class="rm" onclick="removeItem(this)">remove</button>';
+  document.getElementById('skillsList').appendChild(span);
+  input.value = '';
+  saveAll();
+}
+
+function addProject(){
+  const title = prompt('Project title:');
+  if(!title) return;
+  const desc = prompt('Short description:') || '';
+  const tech = prompt('Technologies used (e.g. C++ Raylib):') || '';
+  const demo = prompt('Demo video link (URL):') || '#';
+  const github = prompt('GitHub link (URL):') || '#';
+
+  const card = document.createElement('div');
+  card.className = 'project-card';
+  const projectId = 'proj_' + Date.now();
+  card.innerHTML = '<button class="rm-project" onclick="removeItem(this)">remove</button>' +
+    '<div class="project-thumb" onclick="if(document.body.classList.contains(\'edit-mode\')) document.querySelector(\'.project-input-' + projectId + '\').click()">' +
+    '<img id="' + projectId + '-img" style="display:none;" alt="thumbnail">' +
+    '<span id="' + projectId + '-placeholder">📸 Upload thumbnail</span>' +
+    '</div>' +
+    '<input type="file" class="project-input-' + projectId + '" accept="image/*" style="display:none;" onchange="handleProjectThumbUpload(event, \'' + projectId + '\')">' +
+    '<h3 contenteditable="true">' + escapeHtml(title) + '</h3>' +
+    '<p class="desc" contenteditable="true">' + escapeHtml(desc) + '</p>' +
+    '<p class="tech" contenteditable="true">' + escapeHtml(tech) + '</p>' +
+    '<div class="project-links">' +
+    '<a href="' + escapeAttr(demo) + '" contenteditable="true" target="_blank">Demo video</a>' +
+    '<a href="' + escapeAttr(github) + '" contenteditable="true" target="_blank">GitHub</a>' +
+    '</div>';
+  document.getElementById('projectsGrid').insertBefore(card, document.querySelector('.add-project-card'));
+  saveAll();
+}
+
+function handleProjectThumbUpload(event, projectId){
+  const file = event.target.files[0];
+  if(!file) return;
+  
+  if(file.size > 3 * 1024 * 1024){
+    alert('❌ Please choose an image smaller than 3MB.');
+    return;
+  }
+  
+  // Check if file is an image
+  if(!file.type.startsWith('image/')){
+    alert('❌ Please select a valid image file (JPG, PNG, etc.)');
+    return;
+  }
+  
+  const reader = new FileReader();
+  reader.onload = function(e){
+    try {
+      const img = document.getElementById(projectId + '-img');
+      const placeholder = document.getElementById(projectId + '-placeholder');
+      
+      if(!img || !placeholder){
+        console.error('Image elements not found for project:', projectId);
+        alert('⚠️ Error uploading image. Please try again.');
+        return;
+      }
+      
+      img.src = e.target.result;
+      img.style.display = 'block';
+      placeholder.style.display = 'none';
+      
+      saveAll();
+      alert('✅ Thumbnail uploaded successfully!');
+    } catch(err){
+      console.error('Error uploading thumbnail:', err);
+      alert('❌ Error uploading image. Please try again.');
+    }
+  };
+  
+  reader.onerror = function(){
+    alert('❌ Error reading file. Please try again.');
+  };
+  
+  reader.readAsDataURL(file);
+}
+
+function addExperience(){
+  const title = prompt('Job title:');
+  if(!title) return;
+  const desc = prompt('Description:') || '';
+
+  const item = document.createElement('div');
+  item.className = 'exp-item';
+  item.innerHTML = '<h3 contenteditable="true">' + escapeHtml(title) + '</h3>' +
+    '<p contenteditable="true">' + escapeHtml(desc) + '</p>' +
+    '<button class="rm-exp" onclick="removeItem(this)">remove</button>';
+  document.getElementById('expList').appendChild(item);
+  saveAll();
+}
+
+function addLearning(){
+  const topic = prompt('New learning topic:');
+  if(!topic || !topic.trim()) return;
+  const grid = document.getElementById('learningGrid');
+  const addBtn = grid.querySelector('.add-learning-btn');
+  const div = document.createElement('div');
+  div.className = 'learning-item';
+  div.innerHTML = escapeHtml(topic.trim()) + '<button class="rm-learn" onclick="removeItem(this)">remove</button>';
+  grid.insertBefore(div, addBtn);
+  saveAll();
+}
+
+function addAchievement(){
+  const input = document.getElementById('newAchievementInput');
+  const val = input.value.trim();
+  if(!val) return;
+  const uid = 'cert_' + Date.now();
+  const div = document.createElement('div');
+  div.className = 'achievement';
+  div.innerHTML = buildAchievementHTML(val, uid, null);
+  document.getElementById('achievementsList').appendChild(div);
+  input.value = '';
+  checkAchievementsEmpty();
+  saveAll();
+}
+
+function buildAchievementHTML(label, uid, imgSrc){
+  const imgPart = imgSrc
+    ? '<div class="cert-img-wrap"><img class="cert-thumb" src="'+imgSrc+'" alt="cert" onclick="openCertLightbox(this.src)"></div>'
+    : '<div class="cert-img-wrap"><span style="font-size:11px;font-family:var(--mono);color:var(--text-faint);">No image</span></div>';
+  return imgPart
+    + '<span style="flex:1">' + escapeHtml(label) + '</span>'
+    + '<label class="cert-upload-lbl" title="Upload certificate image">Add image<input type="file" accept="image/*" style="display:none" onchange="handleCertImg(event,this)"></label>'
+    + '<button class="rm" onclick="removeItem(this)">remove</button>';
+}
+
+function handleCertImg(event, input){
+  const file = event.target.files[0];
+  if(!file) return;
+  if(file.size > 3 * 1024 * 1024){ alert('Please choose an image smaller than 3MB.'); return; }
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const wrap = input.closest('.achievement').querySelector('.cert-img-wrap');
+    wrap.innerHTML = '<img class="cert-thumb" src="'+e.target.result+'" alt="cert" onclick="openCertLightbox(this.src)">';
+    saveAll();
+  };
+  reader.readAsDataURL(file);
+}
+
+function checkAchievementsEmpty(){
+  const list = document.getElementById('achievementsList');
+  const items = list.querySelectorAll('.achievement');
+  const empty = document.getElementById('achievementsEmpty');
+  if(empty) empty.style.display = items.length ? 'none' : 'block';
+}
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function escapeAttr(str){
+  return str.replace(/"/g,'&quot;');
+}
+
+function handleAvatarUpload(event){
+  const file = event.target.files[0];
+  if(!file) return;
+  if(file.size > 3 * 1024 * 1024){
+    alert('Please choose an image smaller than 3MB.');
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const avatar = document.getElementById('avatar');
+    const img = document.getElementById('avatarImg');
+    img.src = e.target.result;
+    avatar.classList.add('has-img');
+    saveAll();
+  };
+  reader.readAsDataURL(file);
+}
+
+const docStore = { resume: null, cv: null };
+
+function handleDocUpload(event, type){
+  const file = event.target.files[0];
+  if(!file) return;
+  if(file.size > 5 * 1024 * 1024){
+    alert('Please choose a file smaller than 5MB.');
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = function(e){
+    docStore[type] = { name: file.name, data: e.target.result, size: file.size };
+    refreshDocUI(type);
+    saveAll();
+  };
+  reader.readAsDataURL(file);
+}
+
+function refreshDocUI(type){
+  const doc = docStore[type];
+  const meta = document.getElementById(type + 'Meta');
+  const openBtn = document.getElementById(type + 'OpenBtn');
+  const rmBtn = document.getElementById(type + 'RmBtn');
+  if(doc){
+    const kb = Math.round(doc.size / 1024);
+    meta.textContent = doc.name + ' - ' + kb + ' KB';
+    openBtn.disabled = false;
+    rmBtn.style.display = 'inline-block';
+  } else {
+    meta.textContent = 'No file uploaded';
+    openBtn.disabled = true;
+    rmBtn.style.display = 'none';
+  }
+}
+
+function openDoc(type){
+  const doc = docStore[type];
+  if(!doc) return;
+  const w = window.open();
+  if(w){
+    w.document.write('<iframe src="' + doc.data + '" style="width:100%;height:100vh;border:none;"></iframe>');
+  } else {
+    const a = document.createElement('a');
+    a.href = doc.data;
+    a.download = doc.name;
+    a.click();
+  }
+}
+
+function removeDoc(type){
+  if(confirm('Remove this file?')){
+    docStore[type] = null;
+    refreshDocUI(type);
+    saveAll();
+  }
+}
+
+function openAvatarLightbox(){
+  const img = document.getElementById('avatarImg');
+  if(!img || !img.src) return;
+  document.getElementById('avatarLightboxImg').src = img.src;
+  document.getElementById('avatarLightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeAvatarLightbox(){
+  document.getElementById('avatarLightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function openCertLightbox(src){
+  document.getElementById('certLightboxImg').src = src;
+  document.getElementById('certLightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeCertLightbox(){
+  document.getElementById('certLightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function addEducation(){
+  const degree = prompt('Degree/Program:');
+  if(!degree) return;
+  const institution = prompt('Institution/University:') || '';
+  const duration = prompt('Duration (e.g., 2021 - 2025):') || '';
+  const details = prompt('Details/Description:') || '';
+
+  const item = document.createElement('div');
+  item.className = 'education-item';
+  item.innerHTML = '<button class="rm-edu" onclick="removeItem(this)">remove</button>' +
+    '<div class="education-header">' +
+    '<h3 contenteditable="true">' + escapeHtml(degree) + '</h3>' +
+    '<p class="institution" contenteditable="true">' + escapeHtml(institution) + '</p>' +
+    '<p class="duration" contenteditable="true">' + escapeHtml(duration) + '</p>' +
+    '</div>' +
+    '<p class="details" contenteditable="true">' + escapeHtml(details) + '</p>' +
+    '<div class="education-result-wrap">' +
+    '<div class="result-info">' +
+    '<span class="result-label">Result/Transcript</span>' +
+    '<label class="result-upload-lbl">Upload result<input type="file" accept="image/*" style="display:none;" onchange="handleEducationResult(event,this)"></label>' +
+    '</div>' +
+    '</div>';
+  document.getElementById('educationGrid').insertBefore(item, document.querySelector('.add-education-card'));
+  saveAll();
+}
+
+function addContact(){
+  const label = prompt('Contact Label (e.g., Email, Phone, LinkedIn, GitHub):');
+  if(!label) return;
+  const value = prompt('Contact Value:') || '';
+  
+  // Detect contact type from label
+  const lowerLabel = label.toLowerCase();
+  let contactType = 'phone'; // default
+  if(lowerLabel.includes('email')) contactType = 'email';
+  else if(lowerLabel.includes('linkedin')) contactType = 'linkedin';
+  else if(lowerLabel.includes('github')) contactType = 'github';
+  else if(lowerLabel.includes('phone') || lowerLabel.includes('whatsapp')) contactType = 'phone';
+  
+  const item = document.createElement('div');
+  item.className = 'contact-item';
+  item.setAttribute('data-contact-type', contactType);
+  item.setAttribute('onclick', 'handleContactItemClick(this)');
+  item.innerHTML = '<span class="contact-label">' + escapeHtml(label) + '</span>' +
+    '<div class="contact-value" contenteditable="true">' + escapeHtml(value) + '</div>' +
+    '<button class="rm-contact" onclick="removeItem(this)">×</button>';
+  
+  document.getElementById('contactInfoGrid').appendChild(item);
+  saveAll();
+}
+
+function handleContactItemClick(element){
+  // If in edit mode or clicking remove button, don't handle click
+  if(document.body.classList.contains('edit-mode')){
+    return;
+  }
+  
+  // Don't open if clicking the remove button
+  if(event && event.target.classList.contains('rm-contact')){
+    return;
+  }
+  
+  const contactType = element.getAttribute('data-contact-type');
+  const value = element.querySelector('.contact-value').textContent.trim();
+  
+  if(!value) return;
+  
+  if(contactType === 'email'){
+    // Open Gmail compose with email pre-filled
+    const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(value) + '&su=' + encodeURIComponent('Message from Portfolio');
+    window.open(gmailUrl, '_blank');
+  } 
+  else if(contactType === 'linkedin'){
+    // Open LinkedIn profile
+    let url = value;
+    if(!url.startsWith('http')){
+      url = 'https://' + url;
+    }
+    window.open(url, '_blank');
+  }
+  else if(contactType === 'github'){
+    // Open GitHub profile
+    let url = value;
+    if(!url.startsWith('http')){
+      url = 'https://' + url;
+    }
+    window.open(url, '_blank');
+  }
+}
+
+function handleContactForm(event){
+  event.preventDefault();
+  
+  const name = document.getElementById('contactName').value.trim();
+  const email = document.getElementById('contactEmail').value.trim();
+  const message = document.getElementById('contactMessage').value.trim();
+  
+  if(!name || !email || !message){
+    alert('❌ Please fill in all fields');
+    return;
+  }
+  
+  // Validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailRegex.test(email)){
+    alert('❌ Please enter a valid email address');
+    return;
+  }
+  
+  // Get the email from the contact grid
+  const emailElement = document.querySelector('.contact-info-grid [data-contact-type="email"] .contact-value');
+  const recipientEmail = emailElement ? emailElement.textContent.trim() : 'your.email@example.com';
+  
+  // Create Gmail URL with pre-filled subject and body
+  const subject = 'Message from ' + name + ' (' + email + ')';
+  const body = 'Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message;
+  
+  const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + 
+                   encodeURIComponent(recipientEmail) + 
+                   '&su=' + encodeURIComponent(subject) + 
+                   '&body=' + encodeURIComponent(body);
+  
+  // Open Gmail in new tab
+  window.open(gmailUrl, '_blank');
+  
+  // Clear the form
+  document.getElementById('contactName').value = '';
+  document.getElementById('contactEmail').value = '';
+  document.getElementById('contactMessage').value = '';
+  
+  // Show success message
+  alert('✅ Gmail opened! Your message is ready to send.');
+}
+
+function handleEducationResult(event, input){
+  const file = event.target.files[0];
+  if(!file) return;
+  if(file.size > 5 * 1024 * 1024){ 
+    alert('Please choose an image smaller than 5MB.'); 
+    return; 
+  }
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const wrap = input.closest('.education-result-wrap');
+    const existingImg = wrap.querySelector('.result-thumb');
+    if(existingImg){
+      existingImg.src = e.target.result;
+    } else {
+      const img = document.createElement('img');
+      img.className = 'result-thumb';
+      img.src = e.target.result;
+      img.alt = 'Result';
+      img.onclick = function(){ openCertLightbox(this.src); };
+      wrap.insertBefore(img, wrap.querySelector('.result-info'));
+    }
+    saveAll();
+  };
+  reader.readAsDataURL(file);
+}
+
+function checkEducationEmpty(){
+  const grid = document.getElementById('educationGrid');
+  if(grid){
+    const items = grid.querySelectorAll('.education-item');
+    if(items.length === 0){
+      const empty = grid.querySelector('.empty-state');
+      if(empty) empty.style.display = 'block';
+    }
+  }
+}
+
+function saveAll(){
+  const data = {
+    hero: {
+      name: document.getElementById('heroName').textContent,
+      tag: document.getElementById('heroTag').textContent
+    },
+    about: {
+      p1: document.getElementById('aboutP1').textContent,
+      p2: document.getElementById('aboutP2').textContent,
+      p3: document.getElementById('aboutP3').textContent
+    },
+    skillsList: document.getElementById('skillsList').innerHTML,
+    projectsGrid: document.getElementById('projectsGrid').innerHTML,
+    expList: document.getElementById('expList').innerHTML,
+    learningGrid: document.getElementById('learningGrid').innerHTML,
+    educationGrid: document.getElementById('educationGrid').innerHTML,
+    achievementsList: document.getElementById('achievementsList').innerHTML,
+    contactInfoGrid: document.getElementById('contactInfoGrid').innerHTML,
+    avatar: document.getElementById('avatarImg').src,
+    docs: docStore
+  };
+  try {
+    localStorage.setItem('fahad_portfolio_v5', JSON.stringify(data));
+  } catch(e){
+    alert('Could not save - files may be too large for browser storage.');
+  }
+}
+
+function loadAll(){
+  try {
+    const raw = localStorage.getItem('fahad_portfolio_v5');
+    if(!raw) return;
+    const data = JSON.parse(raw);
+    
+    if(data.hero){
+      if(data.hero.name) document.getElementById('heroName').textContent = data.hero.name;
+      if(data.hero.tag) document.getElementById('heroTag').textContent = data.hero.tag;
+    }
+    if(data.about){
+      if(data.about.p1) document.getElementById('aboutP1').textContent = data.about.p1;
+      if(data.about.p2) document.getElementById('aboutP2').textContent = data.about.p2;
+      if(data.about.p3) document.getElementById('aboutP3').textContent = data.about.p3;
+    }
+    if(data.skillsList) document.getElementById('skillsList').innerHTML = data.skillsList;
+    if(data.projectsGrid) document.getElementById('projectsGrid').innerHTML = data.projectsGrid;
+    if(data.expList) document.getElementById('expList').innerHTML = data.expList;
+    if(data.learningGrid) document.getElementById('learningGrid').innerHTML = data.learningGrid;
+    if(data.educationGrid) document.getElementById('educationGrid').innerHTML = data.educationGrid;
+    if(data.achievementsList){
+      document.getElementById('achievementsList').innerHTML = data.achievementsList;
+      checkAchievementsEmpty();
+    }
+    if(data.contactInfoGrid) document.getElementById('contactInfoGrid').innerHTML = data.contactInfoGrid;
+    if(data.avatar && data.avatar.trim()){
+      const img = document.getElementById('avatarImg');
+      img.src = data.avatar;
+      document.getElementById('avatar').classList.add('has-img');
+    }
+    if(data.docs){
+      if(data.docs.resume){ docStore.resume = data.docs.resume; refreshDocUI('resume'); }
+      if(data.docs.cv){ docStore.cv = data.docs.cv; refreshDocUI('cv'); }
+    }
+  } catch(e){}
+}
+
+function resetSite(){
+  if(confirm('Reset all edits to the default content? This cannot be undone.')){
+    localStorage.removeItem('fahad_portfolio_v5');
+    location.reload();
+  }
+}
+
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){
+    closeAvatarLightbox();
+    closeCertLightbox();
+  }
+});
+
+window.addEventListener('load', function(){
+  loadAll();
+});
+</script>
+
+
+
+
+  <!-- JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
